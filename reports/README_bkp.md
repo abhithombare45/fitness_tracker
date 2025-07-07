@@ -19,7 +19,7 @@ Ensure you adjust the `.gitignore` file according to your project needs. For exa
 Typically, you want to exclude this folder if it contains either sensitive data that you do not want to add to version control or large files.
 
 ## Duplicating the .env File
-To set up your environment variables,  you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
+To set up your environment variables, you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
 
 ```bash
 cp .env.example .env # Linux, macOS, Git Bash, WSL
