@@ -107,6 +107,7 @@ This project is inspired by the research conducted by Dave Ebbelaar. His paper, 
 > Project: Tracking Barbell Exercises using ML on Sensor Data [ Master Project | Abhijeet Thombare | IIT Guwahati Feb 2025 ]  
 > Built a fitness tracker model using time-series sensor data to classify different barbell exercises. Includes preprocessing, feature extraction, and supervised learning models.  
 
+
 ![Build](https://img.shields.io/badge/build-abhithombare45-orange)
 ![Status](https://img.shields.io/badge/Status-COMPLETED-green)
 ![License](https://img.shields.io/badge/license-IITG-blue)
