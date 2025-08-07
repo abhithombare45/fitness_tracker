@@ -1,79 +1,113 @@
-# Data Project Template
+# 🟢 Tracking Barbell Exercises
+*Master Project | Abhijeet Thombare | IIT, Guwahati- DS AI, India*
+<div align="right">
+  <img src="https://img.shields.io/badge/abhithombare45-black" />
+</div>
+This repository provides all the code to process, visualize, and classify accelerometer and gyroscope data obtained from fitbit smart band. The data was collected during gym workouts where participants were performing various barbell exercises.
 
-<a target="_blank" href="https://datalumina.com/">
-    <img src="https://img.shields.io/badge/Datalumina-Project%20Template-2856f7" alt="Datalumina Project" />
-</a>
+#### 🏋️‍♂️ Exercises 
+![Barbell exercise examples](images/barbell_exercises.png)
+![Barbell exercise graphs](images/graphs.png)
 
-## Cookiecutter Data Science
-This project template is a simplified version of the [Cookiecutter Data Science](https://cookiecutter-data-science.drivendata.org) template, created to suit the needs of Datalumina and made available as a GitHub template.
+#### 📌 Goals 
+* Classify barbell exercises
+* Count repetitions
+* Detect improper form 
 
-## Adjusting .gitignore
+#### 🧬 Installation 
+Create and activate an anaconda environment and install all package versions using `conda install --name <EnvironmentName> --file conda_requirements.txt`. Install non-conda packages using pip: `pip install -r pip_requirements.txt`.
 
-Ensure you adjust the `.gitignore` file according to your project needs. For example, since this is a template, the `/data/` folder is commented out and data will not be exlucded from source control:
+#### 🚀 References  
+The original code is associated with the book titled "*Machine Learning for the Quantified Self: On the Art of Learning from Sensory Data*"
+authored by Mark Hoogendoorn and Burkhardt Funk and published by Springer in 2017. The website of the book can be found on [ml4qs.org](https://ml4qs.org/).
 
-```plaintext
-# exclude data from source control by default
-# /data/
-```
-
-Typically, you want to exclude this folder if it contains either sensitive data that you do not want to add to version control or large files.
-
-## Duplicating the .env File
-To set up your environment variables,  you need to duplicate the `.env.example` file and rename it to `.env`. You can do this manually or using the following terminal command:
-
-```bash
-cp .env.example .env # Linux, macOS, Git Bash, WSL
-copy .env.example .env # Windows Command Prompt
-```
-
-This command creates a copy of `.env.example` and names it `.env`, allowing you to configure your environment variables specific to your setup.
-
-
-## Project Organization
+#### 📁 Project Structure 
 
 ```
-├── LICENSE            <- Open-source license if one is chosen
-├── README.md          <- The top-level README for developers using this project
-├── data
-│   ├── external       <- Data from third party sources
-│   ├── interim        <- Intermediate data that has been transformed
-│   ├── processed      <- The final, canonical data sets for modeling
-│   └── raw            <- The original, immutable data dump
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-└── src                         <- Source code for this project
-    │
-    ├── __init__.py             <- Makes src a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    │    
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    ├── plots.py                <- Code to create visualizations 
-    │
-    └── services                <- Service classes to connect with external platforms, tools, or APIs
-        └── __init__.py 
+├── LICENSE
+├── README.md         # Project overview and usage guide
+├── data              # Data storage directory
+│   ├── external      # Data from third-party sources
+│   ├── interim       # Intermediate transformed datasets
+│   ├── processed     # Final, clean datasets for modeling
+│   └── raw           # Original sensor data
+├── docs              # Documentation files
+├── models            # Trained models and predictions
+├── notebooks         # Jupyter notebooks for analysis
+├── references        # Manuals and explanatory materials
+├── reports           # Analysis reports with figures
+├── src               # Source code for project
+│   ├── data          # Data preparation scripts
+│   ├── features      # Feature engineering scripts
+│   ├── models        # Model training and evaluation scripts
+│   └── visualization # Scripts for data visualization
+└── requirements.txt  # Dependencies for project setup
 ```
 
---------
+###  Technologies Used
+
+####  🧰 Hardware 
+  + Meta Motion Sensor (Wrist-Worn): Captures accelerometer and gyroscope data.
+
+####  🧠 Software 
+
+  - Programming Language: Python
+  - Libraries:
+      * Data Processing: pandas, numpy, scipy
+      * Machine Learning: scikit-learn
+      * Visualization: matplotlib, seaborn
+  - Development Tools:
+  - Jupyter Notebooks for exploration and experimentation.
+  - Pickle for storing and loading intermediate datasets.
+
+##  🟢 How It Works 
+
+####  1. Data Collection 📡
+  - The dataset is collected using Meta Motion sensors worn on the wrist, mimicking the placement of a smartwatch.
+  - The sensors capture accelerometer (measuring acceleration along X, Y, Z axes) and gyroscope (measuring angular velocity) data during strength training exercises.
+  - Five foundational barbell exercises are recorded:
+      -  Bench Press
+      - Deadlift
+      - Overhead Press
+      - Barbell Row
+      - Squat Alt Text
+
+####  2. Data Processing 📊 
+  - Outlier Removal: Detected and removed anomalies from the dataset using Local Outlier Factor (LOF).
+  - Data Smoothing: Applied low-pass filtering to remove high-frequency noise and ensure smooth signals.
+  - Temporal Aggregation: Summarized motion data over time windows, calculating mean, standard deviation, and other metrics.
+  - Frequency Analysis: Used Fourier Transformations to identify periodic patterns, such as repetitions in exercises.
+
+####  3. Feature Engineering 🔐 
+  - Dimensionality Reduction: Used Principal Component Analysis (PCA) to simplify the dataset while retaining critical motion patterns.
+  - Clustering-Based Features: Grouped similar movements using k-means clustering to distinguish between overlapping exercises.
+  - Scalar Magnitudes: Combined sensor data into orientation-independent metrics to capture overall motion intensity.
+
+####  4. Model Training 🔄
+  - Machine learning models are trained to classify exercises, count repetitions, and detect improper form:
+  - Classification Accuracy: Achieved 98.5% using Random Forest for exercise identification.
+  - Repetition Counting: Used peak detection algorithms to count repetitions with ~95% accuracy.
+  - Form Detection: Trained separate models to detect improper execution of exercises (e.g., incorrect bench press form).
+
+####  5. Results ✨
+  - Exercise Classification Accuracy: 98.5%
+  - Repetition Counting Error: ~5%
+  - Form Detection Accuracy: 98.5%
+
+###  ✅ Future Directions
+  -  Dataset Expansion: Include data from a broader participant base to improve model generalization.
+  -  Integration with Additional Sensors: Combine data from heart rate monitors, EMG sensors, or other devices for more comprehensive insights.
+  -  Real-Time Applications: Implement real-time tracking and feedback via smartwatch SDKs.
+  -  Enhanced Form Detection: Expand improper form detection to include more exercises and detailed analysis.
+
+#### 🤝 Acknowledgments 
+This project is inspired by the research conducted by Dave Ebbelaar. His paper, "Exploring the Possibilities of Context-Aware Applications for Strength Training", provided the foundation for the methodologies and approaches used in this project.
+
+
+> Project: Tracking Barbell Exercises using ML on Sensor Data [ Master Project | Abhijeet Thombare | IIT Guwahati Feb 2025 ]  
+> Built a fitness tracker model using time-series sensor data to classify different barbell exercises. Includes preprocessing, feature extraction, and supervised learning models.  
+
+![Build](https://img.shields.io/badge/build-abhithombare45-orange)
+![Status](https://img.shields.io/badge/Status-COMPLETED-green)
+![License](https://img.shields.io/badge/license-IITG-blue)
+<p align="right">— Abhijeet Thombare  </p>
